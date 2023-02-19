@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { download } from 'src/utils';
+	import FileSaver from 'file-saver';
+	import JSZip from 'jszip';
 	export let curSheet: any;
 	export let onChangeCurSheet: any;
 
@@ -11,13 +13,22 @@
 	let importInput: any;
 	let importSheets: FileList | null = null;
 
-	$: onClickExportAll = () => {
+	$: onClickExportAll = async () => {
+		let zip = new JSZip();
 		try {
 			console.log(otherSheetNames);
-			otherSheetNames.forEach((s) => {
+
+			[...otherSheetNames, 'sheet'].forEach((s) => {
 				console.log('downloading', s);
-				download(localStorage.getItem(s), s, 'text/plain');
+				// add file directly
+				const content = localStorage.getItem(s) || '';
+				zip.folder('fe3h-sheets')?.file(s, content);
 			});
+
+			await zip?.generateAsync({ type:"blob" })
+				.then((blob) => {
+    				FileSaver.saveAs(blob, 'fe3h-sheets.zip');
+				});
 		} catch (err) {
 			console.error(err);
 		}
