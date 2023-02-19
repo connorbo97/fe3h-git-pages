@@ -3,7 +3,6 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	base: "/fe3h-git-pages/",
 	plugins: [sveltekit()],
 	resolve: {
 		alias: {

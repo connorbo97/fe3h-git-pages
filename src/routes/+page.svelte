@@ -4,6 +4,7 @@
 <script lang="ts">
 	var exports = {};
 	import { onDestroy, onMount, setContext } from 'svelte';
+    import { base } from '$app/paths';
 
 	import {
 		CONTEXTS,
@@ -345,11 +346,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="icon" href="{base}/favicon.jpg" />
 	<link
 		href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Ibarra+Real+Nova:wght@400;500;700&display=swap&family=Great+Vibes&display=swap"
 		rel="stylesheet"
 	/>
-	<link rel="icon" type="image/x-icon" href="/favicon.jpg" />
 
 	<title>{name}</title>
 </svelte:head>

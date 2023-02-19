@@ -8,19 +8,22 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess(),
 	kit: {
+		paths: {
+			base: '/fe3h-git-pages',
+		},
 		alias: {
 			$constants: resolve('./src/constants'),
 			$root: resolve('./src'),
 			src: resolve('./src')
-		}
+		},
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			trailingSlash: 'always',
+			fallback: null
+		}),
+		appDir: 'app'
 	},
-	// hydrate the <div id="svelte"> element in src/app.html
-	target: '#svelte',
-	adapter: adapter({
-		pages: 'build',
-		assets: 'build',
-		fallback: null
-	})
 };
 
 export default config;
