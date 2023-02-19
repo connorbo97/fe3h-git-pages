@@ -59,9 +59,9 @@
 		} catch (err) {
 			console.log(err);
 		}
-		localStorage.setItem('otherSheetNames', JSON.stringify(Array.from(sheetNames)));
+		localStorage.setItem('otherSheetNames', JSON.stringify(Array.from(sheetNames).filter(s => s != 'sheet')));
 
-		alert('REMEMBER TO REFRESH');
+		location.reload();
 	};
 
 	$: options = otherSheetNames.sort();
