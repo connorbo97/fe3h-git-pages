@@ -644,10 +644,10 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 					{
 						type: PickOnePromptType.Weapon,
 						options: [
-							WEAPONS.BOLGANONE,
 							WEAPONS.CUTTING_GALE,
 							WEAPONS.THORON,
 							WEAPONS.SAGITTAE,
+							WEAPONS.BOLGANONE,
 							WEAPONS.HAILSTORM
 						]
 					}
@@ -667,7 +667,12 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.B]: {
-			unlocks: {}
+			unlocks: {
+				pickOne: [{
+					type: PickOnePromptType.Weapon,
+					options: [WEAPONS.SAGITTAE, WEAPONS.BOLGANONE, WEAPONS.BANSHEE]
+				}]
+			}
 		},
 		[WEAPON_LEVEL.B_PLUS]: {
 			unlocks: {
@@ -682,7 +687,13 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				pickOne: [
+					{
+						type: PickOnePromptType.Weapon,
+						options: [WEAPONS.RAGNAROK, WEAPONS.METEOR, WEAPONS.BOLTING, WEAPONS.EXCALIBUR, WEAPONS.FIMBULVETR, WEAPONS.AGNEAS_ARROW,  WEAPONS.DARK_SPIKES]
+					}
+				]}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {
@@ -754,7 +765,16 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.B]: {
-			unlocks: {}
+			unlocks: {
+				weapons: {
+					pickOne: [
+						{
+							type: PickOnePromptType.Weapon,
+							options: [WEAPONS.SERAPHIM, WEAPONS.SILENCE]
+						}
+					]
+				}
+			}
 		},
 		[WEAPON_LEVEL.B_PLUS]: {
 			unlocks: {
@@ -769,7 +789,16 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				weapons: {
+					pickOne: [
+						{
+							type: PickOnePromptType.Weapon,
+							options: [WEAPONS.ABRAXAS, WEAPONS.AURA]
+						}
+					]
+				}
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {

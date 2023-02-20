@@ -5,12 +5,8 @@
 	import SvelteTip from 'src/common/SvelteTip.svelte';
 
 	import {
-		BEGINNER_CLASSES,
-		BEGINNER_MASTERY_REQ,
 		CLASS_TO_LABEL,
 		CONTEXTS,
-		INTERMEDIATE_CLASSES,
-		INTERMEDIATE_MASTERY_REQ,
 		LEVEL_UP_ORDER,
 		PROFICIENCY_BONUS,
 		WEAPON_LEVEL,
@@ -498,11 +494,7 @@
 		<span class="header" style:padding="0" />
 		{#each unlockedClasses as curClass, i}
 			{@const curXP = classXP[curClass]?.total || 0}
-			{@const maxXP = BEGINNER_CLASSES.has(curClass)
-				? BEGINNER_MASTERY_REQ
-				: INTERMEDIATE_CLASSES.has(curClass)
-				? INTERMEDIATE_MASTERY_REQ
-				: 10000}
+			{@const maxXP = 10}
 			{@const mastered = classXP[curClass]?.mastered}
 			<div
 				class={classBuilder('label content', {

@@ -118,6 +118,8 @@ declare global {
 		hpBonus?: number;
 		msBonus?: number;
 		bonusRange?: { [s: string]: number };
+		bonusCrit?: { [s: string]: number };
+		bonusDamage?: { [s: string]: Array<CalcEntry> };
 		followUpBonus?: number;
 		protectionBonus?: number;
 		resilienceBonus?: number;

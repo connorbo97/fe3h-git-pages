@@ -201,6 +201,7 @@
 		damageBase,
 		...weaponDamageModifier,
 		...weaponArtDamageModifier,
+		...equippedClassDamageModifier,
 		healPlusModifier,
 		...optionsDamageModifier
 	].filter((a) => a !== 0);
@@ -215,6 +216,7 @@
 		dexMod,
 		critDexModifier,
 		weaponCritModifier,
+		equippedClassCritModifier,
 		...weaponArtCritModifier,
 		...optionsCritModifier
 	]);
@@ -224,6 +226,17 @@
 		CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.bonusRange?.[
 			weaponsToFeatures[selectedWeapon]?.type
 		] || 0;
+	$: equippedClassCritModifier =
+		CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.bonusCrit?.[
+			weaponsToFeatures[selectedWeapon]?.type
+		] || 0;
+	$: equippedClassDamageModifier =
+		CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.bonusDamage?.[
+			weaponsToFeatures[selectedWeapon]?.type
+		] || [];
+	$: console.log(equippedClassDamageModifier, CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.[
+			weaponsToFeatures[selectedWeapon]?.type
+		] || [], selectedWeapon);
 	$: combatArtRange = allCombatArts.fullFeatures[selectedCombatArt]?.range;
 	$: combatSkillsRangeModifier = equippedCombatSkills.reduce(
 		(acc, skill) =>
@@ -368,6 +381,13 @@
 										></span
 									>
 								{/if}
+								{#if equippedClassDamageModifier.length}
+									<span
+										>+ {printCalc(equippedClassDamageModifier)}<span class="source"
+											>(class)</span
+										></span
+									>
+								{/if}
 							</span>
 						{/if}
 					</h2>
@@ -396,6 +416,13 @@
 							{/if}
 							{#if optionsCritModifier.length}
 								<span>+ {optionsCritModifier}<span class="source">(options)</span></span>
+							{/if}
+							{#if equippedClassCritModifier}
+								<span
+									>+ {printCalc(simplifyCalc([equippedClassCritModifier]))}<span class="source"
+										>(class)</span
+									></span
+								>
 							{/if}
 						</span>
 					</h2>

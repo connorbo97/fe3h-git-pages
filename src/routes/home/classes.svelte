@@ -4,7 +4,7 @@
 	import SvelteTip from 'src/common/SvelteTip.svelte';
 
 	import { BEGINNER_CLASSES, CLASS_TO_LABEL, CONTEXTS, INTERMEDIATE_CLASSES } from 'src/constants';
-	import { CLASS_TO_FEATURES } from 'src/constants/classes';
+	import { ADVANCED_CLASSES, CLASS_TO_FEATURES } from 'src/constants/classes';
 	import { classBuilder } from 'src/textUtils';
 	import { getContext } from 'svelte';
 	import ClassesEntry from './classesEntry.svelte';
@@ -116,6 +116,23 @@
 		<div class="label">Intermediate</div>
 		<div class="classes-container">
 			{#each Array.from(INTERMEDIATE_CLASSES) as targetClass}
+				{@const isMastered = masteredClasses.includes(targetClass)}
+				{@const isUnlocked = classSet?.has(targetClass)}
+				<ClassesEntry
+					{isMastered}
+					{isUnlocked}
+					{onToggleClassActive}
+					{onToggleEquipClass}
+					{targetClass}
+					{equippedClass}
+				/>
+			{/each}
+		</div>
+	</div>
+	<div class="category">
+		<div class="label">Advanced</div>
+		<div class="classes-container">
+			{#each Array.from(ADVANCED_CLASSES) as targetClass}
 				{@const isMastered = masteredClasses.includes(targetClass)}
 				{@const isUnlocked = classSet?.has(targetClass)}
 				<ClassesEntry

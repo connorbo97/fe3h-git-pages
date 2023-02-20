@@ -7,6 +7,7 @@ import {
 	WEAPONS_TO_FEATURES,
 	PickOnePromptType
 } from './constants';
+import { addNumberPrefix } from './textUtils';
 
 export const getXPMoochText = (xpMooch, options: any = {}) => {
 	const { prefix = 'Extra XP from Combat:' } = options;
@@ -29,7 +30,7 @@ export const getXPMoochText = (xpMooch, options: any = {}) => {
 };
 
 export const getStatBlockDescription = (
-	unlocks: StatBlock = {},
+	block: StatBlock = {},
 	{ disablePickOne }: { disablePickOne?: boolean } = {}
 ) => {
 	const {
@@ -40,6 +41,8 @@ export const getStatBlockDescription = (
 		weapons,
 		hpBonus,
 		xpMods,
+		bonusDamage,
+		bonusCrit,
 		xpMooch,
 		protectionBonus,
 		msBonus,
@@ -47,7 +50,7 @@ export const getStatBlockDescription = (
 		followUpBonus,
 		pickOne,
 		resilienceBonus
-	} = unlocks;
+	} = block;
 
 	const finalStringArr: Array<string> = [];
 
@@ -129,6 +132,24 @@ export const getStatBlockDescription = (
 	if (msBonus) {
 		finalStringArr.push('MS Bonus (' + msBonus + ')');
 	}
+	if (bonusDamage) {
+		let str = 'Bonus damage by weapon type: (';
+
+		const buffs = Object.keys(bonusDamage).map((key) => {
+			return `${WEAPON_TYPE_TO_LABEL[key]}: ${bonusDamage[key]}`;
+		})
+
+		finalStringArr.push(str + buffs.join(', ') + ')')
+	}
+	if (bonusCrit) {
+		let str = 'Bonus crit by weapon type: (';
+
+		const buffs = Object.keys(bonusCrit).map((key) => {
+			return `${WEAPON_TYPE_TO_LABEL[key]}: ${addNumberPrefix(bonusCrit[key])}`;
+		})
+
+		finalStringArr.push(str + buffs.join(', ') + ')')
+	}
 
 	if (xpMods) {
 		finalStringArr.push(
@@ -187,6 +208,10 @@ export const getClassDescription = (features: ClassFeatures) => {
 	}
 
 	const whenEquippedString = '';
+
+	if (unlocks) {
+		unlocksString = 'Unlocks: ' + getStatBlockDescription(whenEquipped);
+	}
 	return [unlocksString, whenEquippedString].filter((a) => a).join(', ');
 };
 
