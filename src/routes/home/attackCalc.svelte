@@ -234,9 +234,6 @@
 		CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.bonusDamage?.[
 			weaponsToFeatures[selectedWeapon]?.type
 		] || [];
-	$: console.log(equippedClassDamageModifier, CLASS_TO_FEATURES[equippedClass]?.whenEquipped?.[
-			weaponsToFeatures[selectedWeapon]?.type
-		] || [], selectedWeapon);
 	$: combatArtRange = allCombatArts.fullFeatures[selectedCombatArt]?.range;
 	$: combatSkillsRangeModifier = equippedCombatSkills.reduce(
 		(acc, skill) =>
