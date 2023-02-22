@@ -206,9 +206,13 @@
 			window.diceBoxContainer = document.getElementById('dice-box');
 			diceBox.init().then(() => {
 				window.diceBox = diceBox;
-			});
+			}).catch((err) => {
+				console.error(err);
+			})
 			// ...
-		});
+		}).catch((err) => {
+			console.error(err);
+		})
 	});
 	$: onChangeSheet = (newSheet: any) => {
 		resetEquipped();

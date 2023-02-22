@@ -1,4 +1,5 @@
 import { PLAYER_STAT } from './constants/stats';
+import { base } from '$app/paths';
 
 export * from './constants/classes';
 export * from './constants/combatArts';
@@ -50,7 +51,7 @@ export const CONTEXTS = {
 };
 
 export const DEFAULT_DICE_OPTIONS = {
-	assetPath: '/assets/dice-box/', // required,
+	assetPath: `${base}/assets/dice-box/`, // required,
 	id: 'dice-canvas',
 	theme: 'default',
 	themeColor: '#FF0000',
