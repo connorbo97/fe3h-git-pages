@@ -126,7 +126,11 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				combatArts: {
+					[COMBAT_ARTS.WINDSWEEP]: 1
+				}
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {
@@ -213,7 +217,11 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				combatArts: {
+					[COMBAT_ARTS.SWIFT_STRIKES]: 1,
+				}
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {
@@ -305,7 +313,11 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				combatArts: {
+					[COMBAT_ARTS.DIAMOND_AXE]: 1,
+				}
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {
@@ -395,7 +407,21 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				pickOne: [
+					{
+						type: PickOnePromptType.CombatArt,
+						options: [
+							COMBAT_ARTS.WANING_SHOT,
+							COMBAT_ARTS.MONSTER_BLAST,
+							COMBAT_ARTS.SCHISM_SHOT,
+							COMBAT_ARTS.POINT_BLANK_VOLLEY,
+							COMBAT_ARTS.ENCLOSER,
+							COMBAT_ARTS.WARD_ARROW,
+						]
+					}
+				]
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {
@@ -487,7 +513,18 @@ export const WEAPON_TYPES_TO_LEVEL_FEATURES: { [s: string]: { [s: string]: XPLev
 			}
 		},
 		[WEAPON_LEVEL.A]: {
-			unlocks: {}
+			unlocks: {
+				pickOne: [
+					{
+						type: PickOnePromptType.CombatArt,
+						options: [
+							COMBAT_ARTS.DRAINING_BLOW,
+							COMBAT_ARTS.BOMBARD,
+							COMBAT_ARTS.MIGHTY_BLOW
+						]
+					}
+				]
+			}
 		},
 		[WEAPON_LEVEL.A_PLUS]: {
 			unlocks: {

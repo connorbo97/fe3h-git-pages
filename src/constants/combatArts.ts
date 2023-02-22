@@ -8,12 +8,14 @@ export const COMBAT_ARTS = {
 	HAZE_SLICE: 'HAZE_SLICE',
 	SUNDER: 'SUNDER',
 	BANE_OF_MONSTERS: 'BANE_OF_MONSTERS',
+	WINDSWEEP: 'WINDSWEEP',
 
 	TEMPEST_LANCE: 'TEMPEST_LANCE',
 	KNIGHT_KNEELER: 'KNIGHT_KNEELER',
 	SHATTER_SLASH: 'SHATTER_SLASH',
 	HIT_AND_RUN: 'HIT_AND_RUN',
 	MONSTER_PIERCER: 'MONSTER_PIERCER',
+	SWIFT_STRIKES: 'SWIFT_STRIKES',
 
 	SMASH: 'SMASH',
 	HELM_SPLITTER: 'HELM_SPLITTER',
@@ -30,6 +32,9 @@ export const COMBAT_ARTS = {
 	BREAK_SHOT: 'BREAK_SHOT',
 	SCHISM_SHOT: 'SCHISM_SHOT',
 	MONSTER_BLAST: 'MONSTER_BLAST',
+	POINT_BLANK_VOLLEY: 'POINT_BLANK_VOLLEY',
+	ENCLOSER: 'ENCLOSER',
+	WARD_ARROW: 'WARD_ARROW',
 
 	FADING_BLOW: 'FADING_BLOW',
 	RUSHING_BLOW: 'RUSHING_BLOW',
@@ -38,10 +43,12 @@ export const COMBAT_ARTS = {
 	BOMBARD: 'BOMBARD',
 	ONE_TWO_PUNCH: 'ONE_TWO_PUNCH',
 	MONSTER_CRUSHER: 'MONSTER_CRUSHER',
+	MIGHTY_BLOW: 'MIGHTY_BLOW',
 
 	SWAP: 'SWAP',
 	SHOVE: 'SHOVE',
 	REPOSITION: 'REPOSITION',
+	HEALING_FOCUS: 'HEALING_FOCUS',
 	PULL_BACK: 'PULL_BACK'
 };
 
@@ -68,6 +75,11 @@ export const COMBAT_ARTS_TO_FEATURES: { [s: string]: ArtFeatures } = {
 		label: 'Pull Back',
 		description:
 			'As an action, pull you and an adjacent ally 1 square back. Does not consume a superiority die.'
+	},
+	[COMBAT_ARTS.HEALING_FOCUS]: {
+		label: 'Healing Focus',
+		description:
+			'As an action, regain half your HP'
 	},
 	// SWORDS
 	[COMBAT_ARTS.WRATH_STRIKE]: {
@@ -107,15 +119,16 @@ export const COMBAT_ARTS_TO_FEATURES: { [s: string]: ArtFeatures } = {
 		critBonus: [3],
 		dieCost: HALF_THE_TIME_MINUS_1
 	},
-	// LANCES
-	[COMBAT_ARTS.TEMPEST_LANCE]: {
-		label: 'Tempest Lance',
-		description: '',
-		compatibleWeapons: [WEAPON_TYPE.LANCE],
-		damageBonus: [2],
-		attackBonus: [2],
-		dieCost: HALF_THE_TIME_PLUS_1
+	[COMBAT_ARTS.WINDSWEEP]: {
+		label: 'Windsweep',
+		description: 'Enemy does not retaliate',
+		compatibleWeapons: [WEAPON_TYPE.SWORD],
+		damageBonus: [1],
+		attackBonus: [4],
+		critBonus: [2],
+		dieCost: HALF_THE_TIME_PLUS_1,
 	},
+	// LANCES
 	[COMBAT_ARTS.TEMPEST_LANCE]: {
 		label: 'Tempest Lance',
 		description: '',
@@ -152,6 +165,12 @@ export const COMBAT_ARTS_TO_FEATURES: { [s: string]: ArtFeatures } = {
 		description: '2x damage against monsters',
 		compatibleWeapons: [WEAPON_TYPE.LANCE],
 		damageBonus: [2]
+	},
+	[COMBAT_ARTS.SWIFT_STRIKES]: {
+		label: 'Swift Strike',
+		description: 'Attack twice before the enemy attacks',
+		compatibleWeapons: [WEAPON_TYPE.LANCE],
+		damageBonus: [1]
 	},
 	[COMBAT_ARTS.SMASH]: {
 		label: 'Smash',
@@ -268,6 +287,33 @@ export const COMBAT_ARTS_TO_FEATURES: { [s: string]: ArtFeatures } = {
 		range: [2, 3],
 		dieCost: HALF_THE_TIME_MINUS_1
 	},
+	[COMBAT_ARTS.POINT_BLANK_VOLLEY]: {
+		label: 'Point Blank Volley',
+		description: '2 consecutive hits; add +2 AC against retaliation',
+		compatibleWeapons: [WEAPON_TYPE.BOW],
+		attackBonus: [2],
+		damageBonus: [1],
+		range: [1],
+	},
+	[COMBAT_ARTS.ENCLOSER]: {
+		label: 'Encloser',
+		description: 'On hit, target cannot move for 1 turn',
+		compatibleWeapons: [WEAPON_TYPE.BOW],
+		attackBonus: [3],
+		damageBonus: [1],
+		range: [2],
+		dieCost: HALF_THE_TIME_MINUS_1
+	},
+	[COMBAT_ARTS.WARD_ARROW]: {
+		label: 'Ward Arrow',
+		description: 'On hit, target cannot use magic for 1 turn',
+		compatibleWeapons: [WEAPON_TYPE.BOW],
+		attackBonus: [3],
+		damageBonus: [1],
+		range: [2],
+		dieCost: HALF_THE_TIME_MINUS_1
+	},
+	
 	[COMBAT_ARTS.FADING_BLOW]: {
 		label: 'Fading Blow',
 		description:
@@ -323,6 +369,15 @@ export const COMBAT_ARTS_TO_FEATURES: { [s: string]: ArtFeatures } = {
 		attackBonus: [2],
 		critBonus: [2],
 		damageBonus: [Dice.d2, 2]
+	},
+	[COMBAT_ARTS.MIGHTY_BLOW]: {
+		label: 'Mighty Blow',
+		description: '',
+		compatibleWeapons: [WEAPON_TYPE.FISTS],
+		attackBonus: [-1],
+		damageBonus: [Dice.d2, Dice.d2],
+		critBonus: [4],
+		dieCost: HALF_THE_TIME_MINUS_1
 	}
 };
 export const getCombatArtsDescription = (
