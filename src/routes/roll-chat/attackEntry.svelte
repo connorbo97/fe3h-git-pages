@@ -13,6 +13,7 @@
 		damageRoll,
 		crestName,
 		isHealWeapon,
+		isChat,
 		attackName
 	} = entry;
 
@@ -53,7 +54,7 @@
 			<div class="Crest">Crest of {crestName || ''}</div>
 		{/if}
 		{#if damageRoll !== undefined}
-			<div class="Damage">{isHealWeapon ? 'HP Restored' : 'Damage'}</div>
+			<div class="Damage">{isHealWeapon ? 'HP Restored' : (isChat ? '' : 'Damage')}</div>
 		{/if}
 	</div>
 	<div class="result">

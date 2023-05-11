@@ -464,6 +464,7 @@
 				<div class={currentPage === 'ROLLS' ? '' : 'invisible'}>
 					{#if currentPage === 'ROLLS'}
 						<RollChat
+							playerName={name}
 							{chatEntries}
 							{spoilersOn}
 							{toggleSpoilersOn}

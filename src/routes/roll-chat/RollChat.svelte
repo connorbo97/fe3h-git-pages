@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, getContext } from 'svelte';
 
+	import { CONTEXTS } from 'src/constants';
 	import AttackEntry from './attackEntry.svelte';
 	import BasicEntry from './basicEntry.svelte';
+	import { addEntryToChat } from 'src/rollUtils';
 
+	const db = getContext(CONTEXTS.DB);
+	export let playerName: any;
 	export let chatEntries: any;
 	export let spoilersOn: any;
 	export let toggleSpoilersOn: any;
@@ -11,6 +15,8 @@
 	export let setAlreadyRevealed: any;
 
 	let chat;
+
+	let typedChat = '';
 
 	let lastResolvedScroll = -1;
 	let mounted = false;
@@ -45,13 +51,33 @@
 			}
 		}
 	}
+	
+
+	let onSubmitTypedChat = (e) => {
+		if (e.key != 'Enter') {
+			return;
+		}
+
+		const entry: any = {
+			playerName,
+			type: "ATTACK_ROLL",
+			attackName: 'says',
+			damageRoll: typedChat,
+			isChat: true
+		};
+
+		addEntryToChat(db, entry);
+	}
 </script>
 
 <div class="container">
 	<div style:width="100%">
 		<h3>Roll Chat (total entries: {chatEntries?.length || '-'})</h3>
+		<div>
+			<span>Chat here:</span>
+			<input bind:value={typedChat} on:keyup={onSubmitTypedChat}/>
+		</div>
 	</div>
-
 	<div>
 		<span>Hide Damage Initially?</span>
 		<input type="checkbox" checked={spoilersOn !== Infinity} on:click={toggleSpoilersOn} />

@@ -213,6 +213,7 @@ declare global {
 		crestName?: string;
 		damageRoll?: string;
 		isHealWeapon?: boolean;
+		isChat?: boolean;
 	};
 
 }
