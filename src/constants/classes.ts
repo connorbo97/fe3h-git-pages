@@ -840,6 +840,7 @@ export const CLASS_TO_FEATURES: ClassToFeatures = {
 	},
 	[CLASS.WARLOCK]: {
 		label: 'Warlock',
+		canUseMagic: true,
 		unlocks: {
 			hpBonus: 1,
 			playerStats: {
@@ -866,6 +867,7 @@ export const CLASS_TO_FEATURES: ClassToFeatures = {
 	},
 	[CLASS.BISHOP]: {
 		label: 'Bishop',
+		canUseMagic: true,
 		unlocks: {
 			hpBonus: 1,
 			playerStats: {
